@@ -4,6 +4,7 @@ import android.content.Context;
 import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public class MyGalleryAdapter extends BaseAdapter{
         Context context;
-        int[] posterIDs={R.drawable.busanhang, R.drawable.conan, R.drawable.doraemong,
+        int[] posterIDs={R.drawable.busanhang, R.drawable.conann, R.drawable.doraemong,
                 R.drawable.manendwoman, R.drawable.miljeong, R.drawable.ponyo,
                 R.drawable.pororo, R.drawable.rapunjel, R.drawable.yong, R.drawable.zootopia};
 
@@ -45,6 +46,15 @@ public class MainActivity extends AppCompatActivity {
             imgV.setScaleType(ImageView.ScaleType.FIT_CENTER);
             imgV.setPadding(5,5,5,5);
             imgV.setImageResource(posterIDs[position]);
+            final int pos=position;
+            imgV.setOnTouchListener(new View.OnTouchListener(){
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    imgMain.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                    imgMain.setImageResource(posterIDs[pos]);
+                    return false;
+                }
+            });
             return imgV;
         }
 
